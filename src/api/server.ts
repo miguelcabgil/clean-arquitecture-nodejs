@@ -7,5 +7,5 @@ app.use(bodyparser.urlencoded({extended: true}));
 app.use(bodyparser.json({limit: '10mb'}));
 routes(app);
 app.listen(3000, () => {
-    console.log('Listen on port 3000');
+    console.log('Listen on http://localhost:3000');
 });

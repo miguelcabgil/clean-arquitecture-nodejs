@@ -1,11 +1,20 @@
-import express from 'express';
-import bodyparser from 'body-parser';
-import routes from './routes/routes';
+import express, {Express} from 'express';
+import Routers from './routers';
+import Middlewares from './middlewares';
 
-const app = express();
-app.use(bodyparser.urlencoded({extended: true}));
-app.use(bodyparser.json({limit: '10mb'}));
-routes(app);
-app.listen(3000, () => {
-    console.log('Listen on http://localhost:3000');
-});
+export class Server {
+    private readonly app: Express;
+
+    constructor() {
+        this.app = express();
+        this.app.set('port', process.env.PORT || 3000);
+        Routers(this.app);
+        Middlewares(this.app);
+    }
+
+    public start() {
+        this.app.listen(this.app.get('port'), () => {
+            console.log(`Listen on http://localhost:${this.app.get('port')}`);
+        });
+    }
+}

@@ -1,27 +1,17 @@
-class Environment {
-    production: false;
+import {config} from 'dotenv';
+
+config();
+
+export const environment = {
+    production: process.env.PRODUCTION,
     dbConfig: {
-        host: string,
-        port: number,
-        name: string
-    };
-
-    constructor() {
-        this.production = false;
-        this.dbConfig = {
-            host: 'localhost',
-            port: 27017,
-            name: 'test'
-        };
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        name: process.env.DB_NAME
     }
+};
 
-    isProduction(): boolean {
-        return this.production;
-    }
-
-    isDevelopment(): boolean {
-        return this.production;
-    }
+export function isProduction(): boolean {
+    return environment.production === 'true';
 }
 
-export default new Environment();

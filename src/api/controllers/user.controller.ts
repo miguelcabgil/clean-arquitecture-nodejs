@@ -1,18 +1,17 @@
 import {NextFunction, Request, Response} from 'express';
-import {HandleError} from '../middlewares/error.middleware';
+import {UserRepository} from '../../infrastucture/repositories/user.repository';
+import {UserSerializer} from '../../infrastucture/serializers/user.serializer';
+import {User} from '../../core/models/user';
+
+const userRepository = new UserRepository();
+const userSerializer = new UserSerializer();
 
 export class UserController {
-    constructor() {
-        console.log('instance controller');
-    }
-
-    public createUser(_: Request, __: Response, next: NextFunction) {
+    public createUser(req: Request, res: Response, next: NextFunction) {
         try {
-            console.log('create user');
-            throw new HandleError({
-                error: 'BadRequest',
-                message: 'Test error'
-            });
+            let user: User = userSerializer.serialize(req.body);
+            user = userRepository.create(user);
+            res.send(userSerializer.deserialize(user).name());
         } catch (e) {
             next(e);
         }

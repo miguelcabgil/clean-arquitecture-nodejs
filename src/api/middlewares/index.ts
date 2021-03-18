@@ -3,10 +3,16 @@ import bodyParser from 'body-parser';
 import Cors from './cors.middleware';
 import Errors from './error.middleware';
 
-export default (app: Express) => {
+const request = (app: Express) => {
     app.use(Cors);
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
+};
+const response = (app: Express) => {
     app.use(Errors);
-}
+};
+export default {
+    request,
+    response
+};
 

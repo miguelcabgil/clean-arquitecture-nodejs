@@ -7,14 +7,14 @@ export class Server {
 
     constructor() {
         this.app = express();
-        this.app.set('port', process.env.PORT || 3000);
+        Middlewares.request(this.app);
         Routers(this.app);
-        Middlewares(this.app);
+        Middlewares.response(this.app);
     }
 
     public start() {
-        this.app.listen(this.app.get('port'), () => {
-            console.log(`Listen on http://localhost:${this.app.get('port')}`);
+        this.app.listen(process.env.PORT || 3000, () => {
+            console.log(`Listen on http://localhost:${process.env.PORT || 3000}`);
         });
     }
 }

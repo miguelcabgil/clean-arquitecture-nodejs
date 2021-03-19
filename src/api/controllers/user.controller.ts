@@ -9,7 +9,7 @@ const userSerializer = new UserSerializer();
 export class UserController {
     public createUser(req: Request, res: Response, next: NextFunction) {
         try {
-            let user: User = userSerializer.serialize(req.body);
+            let user: User = userSerializer.serialize(req.body).all();
             user = userRepository.create(user);
             res.send(userSerializer.deserialize(user).name());
         } catch (e) {

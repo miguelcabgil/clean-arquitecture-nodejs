@@ -4,11 +4,7 @@ config();
 
 export const environment = {
     production: process.env.PRODUCTION,
-    dbConfig: {
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT,
-        name: process.env.DB_NAME
-    }
+    mongo_uri: process.env.MONGO_URI
 };
 
 export function isProduction(): boolean {

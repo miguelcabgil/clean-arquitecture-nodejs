@@ -16,10 +16,11 @@
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.12.0"
+    "mongoose": "^5.12.1"
   },
   "devDependencies": {
     "ts-node": "^9.1.1",
+    "@types/mongoose": "^5.10.3",
     "@types/node": "^14.14.35",
     "@types/express": "^4.17.11",
     "tslint": "^6.1.3",

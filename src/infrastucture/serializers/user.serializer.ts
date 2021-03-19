@@ -1,18 +1,26 @@
 import {User} from '../../core/models/user';
+import {UserNameDto} from '../../core/DTOs/user-name.dto';
 
 export class UserSerializer {
-    public serialize(user: any): User {
-        return new User({
+    public serialize(user: any): { all: () => User; name: () => UserNameDto } {
+        const all = (): User => new User({
             name: user.name,
             email: user.email
         });
+        const name = (): UserNameDto => ({
+            name: user.name
+        });
+        return {
+            all,
+            name
+        };
     }
 
-    public deserialize(user: User): { all: () => { name: string; email: string }; name: () => { name: string } } {
-        const all = () => ({
+    public deserialize(user: User): { all: () => User; name: () => UserNameDto } {
+        const all = (): User => ({
             ...user
         });
-        const name = () => ({
+        const name = (): UserNameDto => ({
             name: user.name
         });
         return {all, name};

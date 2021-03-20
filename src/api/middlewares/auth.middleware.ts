@@ -1,5 +1,3 @@
-import {NextFunction, Request, Response} from 'express';
+import {JWT} from '../../infrastucture/security/jwt';
 
-export const AuthMiddleware = (_: Request, __: Response, next: NextFunction) => {
-    next();
-};
+export const AuthMiddleware = JWT;

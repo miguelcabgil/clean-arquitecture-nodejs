@@ -1,6 +1,6 @@
 import express, {Express} from 'express';
-import Routers from './routers';
-import Middlewares from './middlewares';
+import {Routes} from './routers';
+import {Middlewares} from './middlewares';
 
 export class Server {
     private readonly app: Express;
@@ -8,7 +8,7 @@ export class Server {
     constructor() {
         this.app = express();
         Middlewares.request(this.app);
-        Routers(this.app);
+        Routes(this.app);
         Middlewares.response(this.app);
     }
 

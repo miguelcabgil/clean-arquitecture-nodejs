@@ -13,7 +13,7 @@ export class HandleError extends Error {
     }
 }
 
-export default (err: HandleError, _: Request, res: Response, __: NextFunction) => {
+export const ErrorMiddleware = (err: HandleError, _: Request, res: Response, __: NextFunction) => {
     let code;
     switch (err.error) {
         case 'BadRequest':

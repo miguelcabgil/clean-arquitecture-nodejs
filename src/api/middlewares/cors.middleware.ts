@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from 'express';
 
-export default (_: Request, res: Response, next: NextFunction) => {
+export const CorsMiddleware = (_: Request, res: Response, next: NextFunction) => {
     res.header('Content-Type', 'application/json');
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Access-Token, Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
@@ -8,4 +8,4 @@ export default (_: Request, res: Response, next: NextFunction) => {
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header('Allow', 'GET, POST, PUT, DELETE, OPTIONS');
     next();
-}
+};

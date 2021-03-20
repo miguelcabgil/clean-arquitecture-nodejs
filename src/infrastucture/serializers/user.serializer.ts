@@ -3,7 +3,7 @@ import {UserNameDto} from '../../core/DTOs/user-name.dto';
 
 export class UserSerializer {
     public serialize(user: any): { all: () => User; name: () => UserNameDto } {
-        const all = (): User => new User({
+        const all = (): User => ({
             name: user.name,
             email: user.email
         });
